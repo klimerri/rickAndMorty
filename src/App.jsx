@@ -2,81 +2,28 @@ import "./App.css";
 import { Header } from "./header/Header.jsx";
 import { Card } from "./card/Card.jsx";
 import { Paginator } from "./paginator/Paginator.jsx";
+import { useAllCharacters } from "./hooks/useAllCharacters.js";
 import { useState } from "react";
-import img from "./images/Rick.png";
 
 function App() {
-	const [list, setList] = useState([
-		{
-			id: 1,
-			imgLink: img,
-			name: "Rick Sanchez",
-			status: "Alive-Human",
-			lastLocation: "Mortynight Run",
-			firstSeen: "Citadel of Ricks",
-		},
-		{
-			id: 2,
-			imgLink: img,
-			name: "Rick Sanchez",
-			status: "Alive-Human",
-			lastLocation: "Mortynight Run",
-			firstSeen: "Citadel of Ricks",
-		},
-		{
-			id: 3,
-			imgLink: img,
-			name: "Rick Sanchez",
-			status: "Alive-Human",
-			lastLocation: "Mortynight Run",
-			firstSeen: "Citadel of Ricks",
-		},
-		{
-			id: 4,
-			imgLink: img,
-			name: "Rick Sanchez",
-			status: "Alive-Human",
-			lastLocation: "Mortynight Run",
-			firstSeen: "Citadel of Ricks",
-		},
-		{
-			id: 5,
-			imgLink: img,
-			name: "Rick Sanchez",
-			status: "Alive-Human",
-			lastLocation: "Mortynight Run",
-			firstSeen: "Citadel of Ricks",
-		},
-		{
-			id: 6,
-			imgLink: img,
-			name: "Rick Sanchez",
-			status: "Alive-Human",
-			lastLocation: "Mortynight Run",
-			firstSeen: "Citadel of Ricks",
-		},
-	]);
+	const [currentPage, setCurrentPage] = useState(1);
+	const { info, results, isFetching } = useAllCharacters(currentPage);
 
 	return (
 		<>
 			<Header />
+
 			<div className="container">
 				<div className="wrapper">
-					{list.map((item) => {
-						return (
-							<Card
-								key={item.id}
-								imgLink={item.imgLink}
-								name={item.name}
-								status={item.status}
-								lastLocation={item.lastLocation}
-								firstSeen={item.firstSeen}
-							/>
-						);
-					})}
+					{!isFetching
+						? results?.map((item) => {
+								return <Card data={item} key={item.id} />;
+						  })
+						: null}
 				</div>
 			</div>
-			<Paginator />
+
+			{!isFetching && <Paginator pagesCount={info.pages} currentPage={currentPage} setCurrentPage={setCurrentPage} />}
 		</>
 	);
 }
