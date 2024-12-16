@@ -1,0 +1,39 @@
+.paginator-wrapper {
+    padding-bottom: 100px;
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    align-items: center;
+    width: fit-content;
+    margin: 0 auto;
+
+    &__item {
+      width: 32px;
+      height: 32px;
+      font-size: 20px;
+      border-radius: 4px;
+      background: #3C3E44;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    
+      &.active {
+        background: #fff;
+      }
+    }
+    
+    span {
+      color: #fff;
+      font-size: 20px;
+    }
+    
+    &__prev-btn {
+      width: 20px;
+    }
+    
+    &__next-btn {
+      width: 20px;
+      transform: rotate(180deg);
+    }
+  }

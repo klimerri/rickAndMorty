@@ -11,5 +11,21 @@ export const characters = {
 
     getCharactersByPage(page) {
         return instance.get(`/character?page=${page}`)
+    },
+
+    getCharacterById(id) {
+        return instance.get(`/character/${id}`)
+    }
+}
+
+export const episodes = {
+    getAllEpisodes() {
+        return instance.get('/episode');
+    }
+}
+
+export const locations = {
+    getAllLocations() {
+        return instance.get('/location');
     }
 }

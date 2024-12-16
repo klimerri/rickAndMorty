@@ -22,6 +22,8 @@ export function Paginator({ pagesCount, currentPage, setCurrentPage }) {
 			setPages((prevPages) => {
 				return [1, "...", prevPages[2]++, prevPages[3]++, "...", pagesCount];
 			});
+
+			console.log(pages);
 		}
 	};
 

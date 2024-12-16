@@ -1,8 +1,9 @@
 import "./Card.scss";
+import { NavLink } from 'react-router-dom';
 
 export function Card({ data }) {
 	return (
-		<div className="card">
+		<NavLink className="card" to={'/character/' + data.id}> 
 			<img src={data.image} className="card__image"></img>
 
 			<div className="card__user">
@@ -24,6 +25,6 @@ export function Card({ data }) {
 					<span className="first-location__first-seen">{data.episode[0].split("/").pop()}</span>
 				</div>
 			</div>
-		</div>
+		</NavLink>
 	);
 }
